@@ -110,9 +110,57 @@
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title color1 ">
-					<a data-toggle="collapse" data-parent="tutorial" href="#consultas">CONSULTAS: <span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></a>
-				</h3>
+				<h4 class="panel-title color1">
+					<a data-toggle="collapse" data-parent="#tutorial" href="#lecturaEscritura">LEYENDO Y ESCRIBIENDO DATOS<span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></a>
+				</h4>
+			</div>
+			<div class="panel-collapse collapse" id="lecturaEscritura">
+				<div class="panel-body">
+					<div class="container">
+					<p>CRUD es el acronismo para las cuatro verbos que utilizamos para operar con los datos: Create,Read, Update and Delete. Active Record automáticamente crea métodos que permiten a una aplicación leer y manipular los datos guardados dentro de las tablas.</p>
+					<h5><strong>CREAR</strong> </h5>
+					<div class="col-lg-offset-1">
+						<p>
+						Para agregar registros a una tabla se debe entrar por la consola de rails, para esto basta con ingresar el comando rails console una vez dentro de la consola de rails se usa el nombre de la clase o tabla	para crear los registros
+						</p>
+						<p>Ejm <em class="text-primary">$ user = User.create(name: "David", occupation: "Code Artist")</em></p>
+						<p>Ahora intenta crear un registro en la tabla client con los siguientes datos: Teléfono: 1234567, Dirección: cra 68 # 26-50, Ciudad: Bogotá
+						</p>
+						<br>
+						<div class="container row col-lg-12">
+							<div id="r1" class="panel-group">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title color1">
+											<a data-toggle="collapse" data-parent="#r1" href="#respuesta1">El resultado debería ser:<span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span></a>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse" id="respuesta1">
+										<div class="panel-body">
+										<div class="container">
+											<div class="form-group row">
+												<div class="col-lg-10">
+													<img src="images/CrearClienteSV.png" alt="" class="img-responsive">
+												</div>
+											</div>
+										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="cotainer row col-lg-12">
+						<p>Otra forma de crear objetos es:</p>
+						<p class="text-center text-primary">$ user = User.new</p>
+						<p class="text-center text-primary">$ user.name = "David"</p>
+						<p class="text-center text-primary">$ user.occupation = "Code Artist"</p>
+						<p>Y finamente se guarda porque hasta el momento el objeto no es persistente</p>
+						<p class="text-center text-primary">$ user.save</p>
+						</div>
+					</div>
+					<h5><strong></strong> </h5>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="panel panel-default">
