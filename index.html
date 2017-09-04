@@ -17,8 +17,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title color1 ">
-					INTRODUCCION Y REQUISITOS
-					<a data-toggle="collapse" data-parent="tutorial" href="#introduccion"><span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></a>
+					<a data-toggle="collapse" data-parent="tutorial" href="#introduccion">INTRODUCCION Y REQUISITOS<span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></a>
 				</h3>
 			</div>
 			<div id="introduccion" class="panel-collapse collapse in">
@@ -91,14 +90,14 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title color1">
-										<a href="#scaffold" data-toggle="collapse" data-parent="tutorial">En este espacio podrás ver el resultado de las anteriores líneas si se desarrollaron correctamente <span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span>
+										<a href="#scaffold" data-toggle="collapse" data-parent="#scaffoldTotal">En este espacio podrás ver el resultado de las anteriores líneas si se desarrollaron correctamente <span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span>
 										</a>
 									</h4>
 								</div>
 								<div id="scaffold" class=" panel-collapse collapse">
 									<div class="panel-body">
 										<div class="">
-											Scaffold
+											Scaffold:
 											<img src="images/Scaffold.jpg" alt="" class="img-responsive">
 										</div>
 									</div>
@@ -112,15 +111,204 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title color1 ">
-					<a data-toggle="collapse" data-parent="tutorial" href="#experienciLaboral">EXPERIENCIA LABORAL<span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></a>
+					<a data-toggle="collapse" data-parent="tutorial" href="#consultas">CONSULTAS: <span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></a>
 				</h3>
 			</div>
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title color1 ">
-					<a data-toggle="collapse" data-parent="tutorial" href="#totalTiempoExperiencia">TOTAL TIEMPO DE EXPERIENCIA <span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></a>
+					<a data-toggle="collapse" data-parent="tutorial" href="#validaciones">VALIDACIONES: <span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></a>
 				</h3>
+			</div>
+			<div class="panel-collapse collapse" id="validaciones">
+				<div class="panel-body">
+					<div class="container">
+						<p> La validación es una tarea muy importante a considerar cuando se guardan datos en una base de datos, entonces los métodos save y update toman esto en cuenta cuando se ejecutan: ellos retornan false cuando una validación falla y no mantuvieron ninguna operación en la base de datos</p>
+						<p>Intentemos con los modelos como los tenemos crear un objeto en Client sin parámetros de validación:</p>
+						<div class="text-primary col-lg-offset-1">
+							<dd>$ Client.create(name:"", phone:1234567, address:"cra 68 # 26-50", city:"Bogotá")</dd>
+						</div>
+						<br>
+					</div>
+					<div class="container">
+						<div id="addClienteNV" class="panel-group">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title color1">
+										<a data-toggle="collapse" data-parent="#addClienteNV" href="#addClienteNV1">El resultado seria:<span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span>
+										</a>
+									</h4>
+								</div>
+								<div class="panel-collapse collapse" id="addClienteNV1">
+									<div class="panel-body">
+										<div class="">
+											<img src="images/CrearClienteSV.png" alt="" class="img-responsive">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container">
+						<p>A continuación Creamos validaciones para el modelo Client:</p>
+						<div class="text-primary col-lg-offset-1">
+							<dd>$ class Client < ApplicationRecord
+	validates :name, presence: true, length: { minimum: 2 } <kbd> el campo name es obligatorio y la longitud debe ser mínimo 2 caracteres</kbd> 
+							</dd>
+							<dd>$ validates :phone, numericality: true, length: {in: 7..11}, uniqueness: true
+							<kbd>es numérico y único, además la longitud debe ser entre 7 y 11</kbd>
+							</dd>
+							<dd>
+								$ validates :address, presence: true
+								<kbd>el campo es obligatorio</kbd>
+							</dd>
+							<dd>
+								$ validates :city, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+								<kbd>solo cadenas a-z, A-Z</kbd>
+							</dd>
+						</div>
+						<br>
+						<p>Tenga en cuenta que esto se hace en el directorio donde esta declarada la clase Cliente y que hereda de ApplicationRecord</p>
+						<br>
+						<p>Ahora mostraremos la validación de un registro sin campos correctos:</p>
+						<img src="images/validarAll.png" alt="" class="img-responsive">
+						<br>
+						<p>Mostraremos el esperado del directorio modificado para validar y algunos errores al intentar validar cada variable.</p>
+						<div class="container">
+						<div id="validacionesAll" class="panel-group">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title color1">
+										<a data-toggle="collapse" data-parent="#validacionesAll" href="#validarDir">Directorio client.rb modificado<span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span></a>
+									</h4>
+								</div>
+									<div class="panel-collapse collapse" id="validarDir">
+									<div class="panel-body">
+										<div class="">
+											<img src="images/configValidacion.png" alt="" class="img-responsive">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title color1">
+									<a data-toggle="collapse" data-parent="#validacionesAll" href="#validar1">Validando regla validates :name, presence: true<span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span></a>
+								</h4>
+							</div>
+							<div class="panel-collapse collapse" id="validar1">
+								<div class="panel-body">
+									<div class="container">
+										<img src="images/validar1.png" alt="" class="img-responsive">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title color1">
+									<a data-toggle="collapse" data-parent="#validacionesAll" href="#validar2">Validando regla validates :name, length: { minimum: 2 }<span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span></a>
+								</h4>
+							</div>
+								<div class="panel-collapse collapse" id="validar2">
+								<div class="panel-body">
+									<div class="container">
+										<img src="images/validar2.png" alt="" class="img-responsive">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title color1">
+									<a data-toggle="collapse" data-parent="#validacionesAll" href="#validar3">Validando la regla validates :phone, length: {in: 7..11}<span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span></a>
+								</h4>
+							</div>
+							<div class="panel-collapse collapse" id="validar3">
+								<div class="panel-body">
+									<div class="container">
+										<img src="images/validar3.png" alt="" class="img-responsive">
+										<img src="images/validar3-1.png" alt="" class="img-responsive">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title color1">
+									<a data-toggle="collapse" data-parent="#validacionesAll" href="#validar4">Validando la regla validates :phone, numericality: true<span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span></a>
+								</h4>
+							</div>
+							<div class="panel-collapse collapse" id="validar4">
+								<div class="panel-body">
+									<div class="container">
+										<img src="images/validar4.png" alt="" class="img-responsive">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title color1">
+									<a data-toggle="collapse" data-parent="#validacionesAll" href="#validar5">Validando la regla validates :phone, uniqueness: true<span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span></a>
+								</h4>
+							</div>
+							<div class="panel-collapse collapse" id="validar5">
+								<div class="panel-body">
+									<div class="container">
+										<img src="images/validar5.png" alt="" class="img-responsive">
+										<img src="images/validar5-1.png" alt="" class="img-responsive">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title color1">
+									<a data-toggle="collapse" data-parent="#validacionesAll" href="#validar6">Validando la regla validates :address, presence: true<span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span></a>
+								</h4>
+							</div>
+							<div class="panel-collapse collapse" id="validar6">
+								<div class="panel-body">
+									<div class="container">
+										<img src="images/validar6.png" alt="" class="img-responsive">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title color1">
+									<a data-toggle="collapse" data-parent="#validacionesAll" href="#validar7">Validando la regla  validates :city, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }<span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span></a>
+								</h4>
+							</div>
+							<div class="panel-collapse collapse" id="validar7">
+								<div class="panel-body">
+									<div class="container">
+										<img src="images/validar7.png" alt="" class="img-responsive">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title color1">
+									<a data-toggle="collapse" data-parent="#validacionesAll" href="#validar8"><strong>REGISTRO EXITOSO</strong><span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span></a>
+								</h4>
+							</div>
+							<div class="panel-collapse collapse" id="validar8">
+								<div class="panel-body">
+									<div class="container">
+										<img src="images/validar8.png" alt="" class="img-responsive">
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="panel panel-default">
@@ -143,6 +331,25 @@
 	<div class="group-control col-xs-7 col-sm-4 col-md-3 col-lg-2 col-lg-offset-10 col-md-offset-9 col-sm-offset-8 col-xs-offset-5">
 		<div class="text-right">
 			<div class="btn btn-success btn-block btn-md">Guardar y Continuar</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div id="" class="panel-group">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title color1">
+					<a data-toggle="collapse" data-parent="#" href="#"><span class="glyphicon glyphicon-collapse-down pull-right" aria-hidden="true"></span></a>
+				</h4>
+			</div>
+			<div class="panel-collapse collapse" id="">
+				<div class="panel-body">
+					<div class="container">
+						
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
