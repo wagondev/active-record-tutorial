@@ -1,0 +1,33 @@
+label{
+	font-size: 14px;
+	font-weight: normal !important;
+}
+.form-control::-webkit-input-placeholder {
+  font-size: 12px;
+}
+
+.form-control:-ms-input-placeholder {
+  font-size: 12px;
+}
+
+.form-control::placeholder {
+  font-size: 12px;
+
+}
+.red{
+	color: red;
+}
+.blue{
+	color: blue;
+}
+small {
+  font-size: 60%;
+}
+
+.color1{
+	background: #110E8D;
+	color: #FFFFFF;
+}
+.panel-default > .panel-heading {
+    background-color:#110E8D;
+}
